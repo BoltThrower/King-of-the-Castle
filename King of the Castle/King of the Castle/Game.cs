@@ -1,28 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace King_of_the_Castle
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
 
-        public Game1()
+        public Game()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            this.graphics.PreferredBackBufferWidth = 1280;
+            this.graphics.PreferredBackBufferHeight = 1024;
+
+            this.graphics.IsFullScreen = true;
         }
 
         /// <summary>
@@ -33,7 +31,9 @@ namespace King_of_the_Castle
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            AnimatedSpriteFactory.Instance.content = Content;
+
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -70,7 +70,18 @@ namespace King_of_the_Castle
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
+
+            var mouseState = Mouse.GetState();
+            var mousePosition = new Point(mouseState.X, mouseState.Y);
+
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                // Do cool stuff here
+            }
+
+            Level.Instance.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -83,7 +94,11 @@ namespace King_of_the_Castle
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            Level.Instance.Draw(spriteBatch, gameTime);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
