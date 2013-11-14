@@ -1,3 +1,4 @@
+using King_of_the_Castle.Controllers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,6 +12,9 @@ namespace King_of_the_Castle
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+
+        public KeyboardController keyboardController;
+        public MouseController mouseController;
 
         public Game()
         {
@@ -32,6 +36,9 @@ namespace King_of_the_Castle
         protected override void Initialize()
         {
             AnimatedSpriteFactory.Instance.content = Content;
+
+            keyboardController = new KeyboardController();
+            mouseController = new MouseController();
 
             this.IsMouseVisible = true;
 
@@ -73,14 +80,8 @@ namespace King_of_the_Castle
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            var mouseState = Mouse.GetState();
-            var mousePosition = new Point(mouseState.X, mouseState.Y);
-
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                // Do cool stuff here
-            }
-
+            keyboardController.Update(gameTime);
+            mouseController.Update(gameTime);
             Level.Instance.Update(gameTime);
 
             base.Update(gameTime);

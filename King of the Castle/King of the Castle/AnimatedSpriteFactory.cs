@@ -12,6 +12,8 @@ namespace King_of_the_Castle
         public ContentManager content;
 
         private string kingTextureName = "king";
+        private string townGuardTextureName = "townGuard";
+        private string banditTextureName = "bandit";
 
         public static AnimatedSpriteFactory Instance
         {
@@ -71,6 +73,20 @@ namespace King_of_the_Castle
         {
             AnimatedSprite sprite = new AnimatedSprite();
             NonLoopingAnimation(sprite, kingTextureName, 1, 0, position);
+            return sprite;
+        }
+
+        public AnimatedSprite BuildTownGuardSprite(Vector2 position)
+        {
+            AnimatedSprite sprite = new AnimatedSprite();
+            NonLoopingAnimation(sprite, townGuardTextureName, 1, 0, position);
+            return sprite;
+        }
+
+        public AnimatedSprite BuildBanditSprite(Vector2 position)
+        {
+            AnimatedSprite sprite = new AnimatedSprite();
+            NonLoopingAnimation(sprite, banditTextureName, 1, 0, position);
             return sprite;
         }
     }

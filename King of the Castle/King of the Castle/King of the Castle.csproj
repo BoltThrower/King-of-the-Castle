@@ -109,14 +109,23 @@
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
     <Compile Include="AnimatedSpriteFactory.cs" />
-    <Compile Include="GameObjects\King.cs" />
+    <Compile Include="Controllers\KeyboardController.cs" />
+    <Compile Include="Controllers\MouseController.cs" />
+    <Compile Include="Enemies\Bandit.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="Interfaces\IEnemy.cs" />
+    <Compile Include="Interfaces\IEnemyState.cs" />
+    <Compile Include="PlayableObjects\King.cs" />
     <Compile Include="GameObjects\PlayableCharacter.cs" />
+    <Compile Include="PlayableObjects\TownGuard.cs" />
+    <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IPlayableObject.cs" />
     <Compile Include="Interfaces\IPlayableObjectState.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="TransitionMachines\GameStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

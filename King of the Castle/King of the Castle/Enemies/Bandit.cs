@@ -4,24 +4,25 @@ using Microsoft.Xna.Framework.Input;
 
 using King_of_the_Castle.Interfaces;
 
-namespace King_of_the_Castle.GameObjects
+namespace King_of_the_Castle.Enemies
 {
-    public class King : IPlayableObjectState
+    public class Bandit : IEnemyState
     {
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
+        public Rectangle CollisionRectangle { get; set; }
 
-        private IPlayableObject parent;
+        private IEnemy parent;
         private AnimatedSprite sprite;
 
 
-        public King(IPlayableObject playableObject)
+        public Bandit(IEnemy enemyObject)
         {
-            this.parent = playableObject;
+            this.parent = enemyObject;
             this.Position = parent.Position;
-            sprite = AnimatedSpriteFactory.Instance.BuildKingSprite(parent.Position);
 
-            //this.playableObject.CollisionRectangle = sprite.SpriteDestinationRectangle;
+            sprite = AnimatedSpriteFactory.Instance.BuildBanditSprite(parent.Position);
+            this.CollisionRectangle = sprite.SpriteDestinationRectangle;
         }
 
         public void Update(GameTime gameTime)

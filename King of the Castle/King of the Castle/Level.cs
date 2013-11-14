@@ -10,10 +10,14 @@ namespace King_of_the_Castle
         private static Level instance;
 
         public PlayableCharacter King;
+        public PlayableCharacter TownGuard1;
+        public Enemy Bandit;
 
         public Level()
         {
             King = new PlayableCharacter(new Vector2(600, 400), "King");
+            TownGuard1 = new PlayableCharacter(new Vector2(575, 400), "TownGuard");
+            Bandit = new Enemy(new Vector2(650, 550), "Bandit");
         }
 
         public static Level Instance
@@ -30,20 +34,16 @@ namespace King_of_the_Castle
 
         public void Update(GameTime gameTime)
         {
-            var mouseState = Mouse.GetState();
-            var mousePosition = new Vector2(mouseState.X, mouseState.Y);
-
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                King.SetFuturePosition(mousePosition);
-            }
-
             King.Update(gameTime);
+            TownGuard1.Update(gameTime);
+            Bandit.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             King.Draw(spriteBatch, gameTime);
+            TownGuard1.Draw(spriteBatch, gameTime);
+            Bandit.Draw(spriteBatch, gameTime);
         }
     }
 }

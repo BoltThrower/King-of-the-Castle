@@ -1,34 +1,43 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
+﻿using King_of_the_Castle.Enemies;
 using King_of_the_Castle.Interfaces;
-using King_of_the_Castle.GameObjects;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace King_of_the_Castle
+namespace King_of_the_Castle.GameObjects
 {
     public class PlayableCharacter : IPlayableObject
     {
         public Vector2 Position { get; set; }
         public Vector2 FuturePosition { get; set; }
         public Vector2 Velocity { get; set; }
+        public Rectangle CollisionRectangle { get; set; }
 
         public bool IsSelected { get; set; }
+        public bool IsAttackingLeft { get; set; }
+        public bool IsAttackingRight { get; set; }
 
         public IPlayableObjectState PlayableObjectState { get; set; }
 
         public PlayableCharacter(Vector2 position, string characterState)
         {
             Position = position;
+            FuturePosition = position;  // make the unit not move when spawned.
             Velocity = new Vector2(1f, 1f);
 
-            IsSelected = true;
+            IsSelected = false;
 
             if (characterState == "King")
             {
                 PlayableObjectState = new King(this);
             }
+
+            else if (characterState == "TownGuard")
+            {
+                PlayableObjectState = new TownGuard(this);
+            }
+
+            CollisionRectangle = PlayableObjectState.CollisionRectangle;
         }
 
         public void Move()
@@ -64,6 +73,10 @@ namespace King_of_the_Castle
             {
                 Position = new Vector2(Position.X, Position.Y - Velocity.Y);
             }
+
+
+            // Update CollisionRectangle after movement
+            CollisionRectangle = new Rectangle((int)Position.X, (int)Position.Y, CollisionRectangle.Width, CollisionRectangle.Height);
         }
 
         public void SetFuturePosition(Vector2 futurePos)
