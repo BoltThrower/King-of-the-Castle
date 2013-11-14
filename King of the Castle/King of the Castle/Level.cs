@@ -15,7 +15,7 @@ namespace King_of_the_Castle
 
         public Level()
         {
-            King = new PlayableCharacter(new Vector2(600, 400), "King");
+            King = new PlayableCharacter(new Vector2(630, 400), "King");
             TownGuard1 = new PlayableCharacter(new Vector2(575, 400), "TownGuard");
             Bandit = new Enemy(new Vector2(650, 550), "Bandit");
         }
@@ -41,9 +41,9 @@ namespace King_of_the_Castle
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            King.Draw(spriteBatch, gameTime);
-            TownGuard1.Draw(spriteBatch, gameTime);
             Bandit.Draw(spriteBatch, gameTime);
+            TownGuard1.Draw(spriteBatch, gameTime);
+            King.Draw(spriteBatch, gameTime);
         }
     }
 }

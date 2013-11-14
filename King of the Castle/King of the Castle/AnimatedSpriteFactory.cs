@@ -15,6 +15,11 @@ namespace King_of_the_Castle
         private string townGuardTextureName = "townGuard";
         private string banditTextureName = "bandit";
 
+        private string attackLeft1TextureName = "attackLeft1";
+        private string attackLeft2TextureName = "attackLeft2";
+        private string attackRight1TextureName = "attackRight1";
+        private string attackRight2TextureName = "attackRight2";
+
         public static AnimatedSpriteFactory Instance
         {
             get
@@ -87,6 +92,36 @@ namespace King_of_the_Castle
         {
             AnimatedSprite sprite = new AnimatedSprite();
             NonLoopingAnimation(sprite, banditTextureName, 1, 0, position);
+            return sprite;
+        }
+
+        // Attack Sprites
+
+        public AnimatedSprite BuildAttackLeft1Sprite(Vector2 position)
+        {
+            AnimatedSprite sprite = new AnimatedSprite();
+            NonLoopingAnimation(sprite, attackLeft1TextureName, 1, 0, position);
+            return sprite;
+        }
+
+        public AnimatedSprite BuildAttackLeft2Sprite(Vector2 position)
+        {
+            AnimatedSprite sprite = new AnimatedSprite();
+            NonLoopingAnimation(sprite, attackLeft2TextureName, 1, 0, position);
+            return sprite;
+        }
+
+        public AnimatedSprite BuildAttackRight1Sprite(Vector2 position)
+        {
+            AnimatedSprite sprite = new AnimatedSprite();
+            NonLoopingAnimation(sprite, attackRight1TextureName, 1, 0, position);
+            return sprite;
+        }
+
+        public AnimatedSprite BuildAttackRight2Sprite(Vector2 position)
+        {
+            AnimatedSprite sprite = new AnimatedSprite();
+            NonLoopingAnimation(sprite, attackRight2TextureName, 1, 0, position);
             return sprite;
         }
     }

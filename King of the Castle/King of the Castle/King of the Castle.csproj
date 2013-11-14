@@ -112,9 +112,13 @@
     <Compile Include="Controllers\KeyboardController.cs" />
     <Compile Include="Controllers\MouseController.cs" />
     <Compile Include="Enemies\Bandit.cs" />
+    <Compile Include="GameObjects\AttackHand.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\Hand.cs" />
     <Compile Include="Interfaces\IEnemy.cs" />
     <Compile Include="Interfaces\IEnemyState.cs" />
+    <Compile Include="Interfaces\IHand.cs" />
+    <Compile Include="Interfaces\IHandState.cs" />
     <Compile Include="PlayableObjects\King.cs" />
     <Compile Include="GameObjects\PlayableCharacter.cs" />
     <Compile Include="PlayableObjects\TownGuard.cs" />

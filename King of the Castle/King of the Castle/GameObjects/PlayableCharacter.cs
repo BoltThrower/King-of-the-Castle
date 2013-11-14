@@ -14,10 +14,9 @@ namespace King_of_the_Castle.GameObjects
         public Rectangle CollisionRectangle { get; set; }
 
         public bool IsSelected { get; set; }
-        public bool IsAttackingLeft { get; set; }
-        public bool IsAttackingRight { get; set; }
 
         public IPlayableObjectState PlayableObjectState { get; set; }
+        public IHand Hand { get; set; }
 
         public PlayableCharacter(Vector2 position, string characterState)
         {
@@ -26,6 +25,7 @@ namespace King_of_the_Castle.GameObjects
             Velocity = new Vector2(1f, 1f);
 
             IsSelected = false;
+            Hand = new Hand(this, false, "AttackHand");
 
             if (characterState == "King")
             {
@@ -93,8 +93,14 @@ namespace King_of_the_Castle.GameObjects
             if (Position != FuturePosition)
             {
                 Move();
+                Hand.IsActive = false;
             }
 
+            // Update Hand if not moving.
+            else
+            {
+                Hand.Update(gameTime);
+            }
 
             PlayableObjectState.Update(gameTime);
         }
@@ -103,6 +109,7 @@ namespace King_of_the_Castle.GameObjects
         {
             // Draw PC's sprite using PlayableObject's Draw method.
             PlayableObjectState.Draw(spriteBatch, gameTime);
+            Hand.Draw(spriteBatch, gameTime);
         }
     }
 }
