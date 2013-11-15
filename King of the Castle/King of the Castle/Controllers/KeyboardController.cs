@@ -21,10 +21,14 @@ namespace King_of_the_Castle.Controllers
                     Level.Instance.King.Hand.IsActive = true;
                 }
 
-                else if (Level.Instance.TownGuard1.IsSelected)
+                foreach (PlayableCharacter pc in Level.Instance.PlayableCharacters)
                 {
-                    Level.Instance.TownGuard1.Hand = new Hand(Level.Instance.TownGuard1, false, "AttackHand");
-                    Level.Instance.TownGuard1.Hand.IsActive = true;
+                    if (pc.IsSelected)
+                    {
+                        pc.Hand = new Hand(pc, false, "AttackHand");
+                        pc.Hand.IsActive = true;
+                        break;
+                    }
                 }
             }
         }

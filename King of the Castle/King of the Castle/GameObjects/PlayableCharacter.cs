@@ -107,6 +107,13 @@ namespace King_of_the_Castle.GameObjects
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            // If selected, show some way that it is selected
+            /*
+            if (IsSelected)
+            {
+                
+            }
+             */
             // Draw PC's sprite using PlayableObject's Draw method.
             PlayableObjectState.Draw(spriteBatch, gameTime);
             Hand.Draw(spriteBatch, gameTime);

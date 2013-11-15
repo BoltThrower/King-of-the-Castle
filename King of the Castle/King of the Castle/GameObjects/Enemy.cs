@@ -14,11 +14,15 @@ namespace King_of_the_Castle.GameObjects
 
         public IEnemyState EnemyState { get; set; }
 
+        private IAI EnemyAI { get; set; }
+
         public Enemy(Vector2 position, string enemyState)
         {
             Position = position;
             FuturePosition = position;  // make the unit not move when spawned.
             Velocity = new Vector2(1f, 1f);
+
+            EnemyAI = new AI(this, "Enemy");
 
             if (enemyState == "Bandit")
             {
@@ -32,6 +36,7 @@ namespace King_of_the_Castle.GameObjects
 
         public void Update(GameTime gameTime)
         {
+            EnemyAI.Update(gameTime);
             EnemyState.Update(gameTime);
         }
 

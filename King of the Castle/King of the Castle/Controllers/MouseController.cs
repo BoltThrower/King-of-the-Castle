@@ -45,12 +45,11 @@ namespace King_of_the_Castle.Controllers
                 if (!selectedUnit)
                 {
                     Level.Instance.King.IsSelected = false;
-                    selectedUnit = SelectPlayableObject(Level.Instance.TownGuard1, mousePosition);
-                }
 
-                else
-                {
-                    Level.Instance.TownGuard1.IsSelected = false;
+                    foreach (PlayableCharacter pc in Level.Instance.PlayableCharacters)
+                    {
+                        selectedUnit = SelectPlayableObject(pc, mousePosition);
+                    }
                 }
             }
 
@@ -61,9 +60,15 @@ namespace King_of_the_Castle.Controllers
                     MoveSelectedPlayableObject(Level.Instance.King, mousePosition);
                 }
 
-                else if (Level.Instance.TownGuard1.IsSelected)
+                else
                 {
-                    MoveSelectedPlayableObject(Level.Instance.TownGuard1, mousePosition);
+                    foreach (PlayableCharacter pc in Level.Instance.PlayableCharacters)
+                    {
+                        if (pc.IsSelected)
+                        {
+                            MoveSelectedPlayableObject(pc, mousePosition);
+                        }
+                    }
                 }
             }
         }
